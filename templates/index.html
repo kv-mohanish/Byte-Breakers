@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proctored Exam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Premium Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f4f4f4, #e9e9e9);
+            margin: 0;
+            padding: 0;
+        }
+
+        .exam-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background-color: #16a085;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:disabled {
+            background-color: #7f8c8d;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #138f77;
+        }
+
+        #warning {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            color: #e74c3c;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        #webcamError {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #e74c3c;
+        }
+
+        #usn {
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 1rem;
+            border: 2px solid #16a085;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #usn:focus {
+            border-color: #138f77;
+        }
+
+        #capturedImage {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="exam-container">
+        <h1>Welcome to the Exam</h1>
+        <button id="startExamBtn" disabled>Start Exam</button> <!-- Start Exam button initially disabled -->
+        <p id="warning"></p>
+
+        <div class="container">
+            <video id="webcam" autoplay playsinline></video>
+            <button id="captureBtn">Capture Photo</button>
+            <p id="webcamError"></p>
+            <img id="capturedImage" alt="Captured Image">
+
+            <input type="text" id="usn" placeholder="Enter your USN">
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
